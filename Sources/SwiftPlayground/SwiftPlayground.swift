@@ -1,89 +1,91 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-
-
-/// Prints the main manu 
-/// - Returns: user menu selction
-func showMenu() -> Int {
-    print ("""
-    =====Egg Shop=====
-        1. Add eggs
-        2. Sell eggs 
-        3. Show current stock 
-        4. Show sales total 
-        5. Exit 
-    Choose an option:
-    """)
-    
-    guard let userInput = readLine() ,  let userInput = Int(userInput) , 
-    userInput > 0 , userInput < 6
-    else {
-        print("Please choose one of the 5 options.")
-        return 6
-    } 
-    return userInput
-}
-
-
-/// asks user how many eggs are being added
-/// Limits: > 1, < 1,000
-/// - Parameter eggsInStock: The cuurent number of eggs in stock 
-func addEggs(eggsInStock: Int) {
-    print("Enter number of eggs being added to the stock:")
-    guard let addedEggs = readLine(), let addedEggs = Int(addedEggs) , 
-addedEggs < 0 , addedEggs + eggsInStock < 1000
-else {
-    return
-}
-}
-
-
-func eggStock(eggsInStock: Int) {
-    print("""
-    -----Current Egg Stock-----
-    eggs: \(eggsInStock)
-    """)
-}
-
-
-/// calls a function based on users input
-/// - Parameter currentMenuChoice: Users input from the main menu 
-func menuChoice(currentMenuChoice: Int) {
-if currentMenuChoice == 1 {
-    addEggs(eggsInStock: )
-}
-else if currentMenuChoice == 2  {
+func printBoard(board: [[String]]) {
+    board.forEach {line in 
+        print("\(line[0]) | \(line[1]) | \(line[2])")
+        print("--+---+--")
+        
+        
+    }
+    print("")
     
 }
-else if currentMenuChoice == 3 {
-    
-    
-}
-else if currentMenuChoice == 4  {
-    
-}
-else if currentMenuChoice == 5 {
-    
-}
-else if currentMenuChoice == 6 {
-    
-}
-}
 
+func askPosition(board: [[String]]) -> [Int] {
+    while true {
+        print("please enter the row number 1-3: ")
+        let userInput = readLine()! 
+        let rowNumber = Int(userInput)! - 1
 
+        print("please enter the column number 1-3: ")
+        let userInput2 = readLine()!  
+        let columnNumber = Int(userInput2)! - 1
+
+        if board[rowNumber][columnNumber] == "." {
+            return [rowNumber, columnNumber]
+        }
+    }
+}
 
 @main
 struct SwiftPlayground {
     static func main() {
-        
-        var ProgramIsRunning = true
-        var eggsSold = 0
-        var currentEggStock = 20 
 
-        while ProgramIsRunning == true {}
-        let menuInput = showMenu()
-        menuChoice(currentMenuChoice: menuInput)
-    
+        var player = "x"
+
+        var board = [
+            [".", ".", "."], // row 0
+            [".", ".", "."], // row 1 
+            [".", ".", "."]  // row 2
+        ]
+        printBoard(board: board)
+
+        while true {
+            // ask user for position 
+            let position = askPosition(board: board)
+            board[position[0]][position[1]] = "player"
+
+            if player == "x" {
+                player = "o"
+            }
+            else {
+                player = "x"
+            }
+        }
+//         // first move 
+//         board[1][1] = "o"
+//         printBoard(board: board)
+
+//         // second move
+//         board[0][0] = "x"
+//         printBoard(board: board)
+
+//         // third move
+//         board[0][2] = "o"
+//         printBoard(board: board)
+
+//         // fouth move
+//         board[2][0] = "x"
+//         printBoard(board: board)
+
+//         //fith move
+//         board[1][0] = "o"
+//         printBoard(board: board)
+
+//         // sixth move 
+//         board[1][2] = "x"
+//         printBoard(board: board)
+
+//         // odin move
+//         board[2][1] = "o"
+//         printBoard(board: board)
+
+//         // eight move
+//         board[2][2] = "x"
+//         printBoard(board: board)
+        
+//         board[0][1] = "o"
+//         printBoard(board: board)
     }
 }
