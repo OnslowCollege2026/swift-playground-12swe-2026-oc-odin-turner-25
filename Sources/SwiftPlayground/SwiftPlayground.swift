@@ -29,13 +29,14 @@ func showMenu() -> Int {
 /// asks user how many eggs are being added
 /// Limits: > 1, < 1,000
 /// - Parameter eggsInStock: The cuurent number of eggs in stock 
-func addEggs(eggsInStock: Int) {
+func addEggs(eggsInStock: Int) -> Int{
     print("Enter number of eggs being added to the stock:")
     guard let addedEggs = readLine(), let addedEggs = Int(addedEggs) , 
-addedEggs < 0 , addedEggs + eggsInStock < 1000
+addedEggs < 0 , addedEggs + eggsInStock < 1000  
 else {
-    return
+    return 0
 }
+return addedEggs
 }
 
 
@@ -49,25 +50,33 @@ func eggStock(eggsInStock: Int) {
 
 /// calls a function based on users input
 /// - Parameter currentMenuChoice: Users input from the main menu 
-func menuChoice(currentMenuChoice: Int) {
+func menuChoice(currentMenuChoice: Int, eggs: Int) -> Int {
 if currentMenuChoice == 1 {
-    addEggs(eggsInStock: )
+    while true {
+        let addEggsResult: Int = addEggs(eggsInStock: eggs)
+        if addEggsResult == 0 {
+        
+        }
+        else {
+            return addEggsResult
+        }
+    }
 }
 else if currentMenuChoice == 2  {
-    
+    return 0
 }
 else if currentMenuChoice == 3 {
-    
-    
+    eggStock(eggsInStock: eggs)
+    return 0
 }
 else if currentMenuChoice == 4  {
-    
+    return 0
 }
 else if currentMenuChoice == 5 {
-    
+    return 0
 }
-else if currentMenuChoice == 6 {
-    
+else {
+    return 0
 }
 }
 
@@ -77,13 +86,24 @@ else if currentMenuChoice == 6 {
 struct SwiftPlayground {
     static func main() {
         
-        var ProgramIsRunning = true
+        var programIsRunning = true
         var eggsSold = 0
         var currentEggStock = 20 
 
-        while ProgramIsRunning == true {}
-        let menuInput = showMenu()
-        menuChoice(currentMenuChoice: menuInput)
-    
+        while programIsRunning == true {
+            let menuInput = showMenu()
+
+            let stockChange = menuChoice(currentMenuChoice: menuInput, eggs: currentEggStock) 
+            if stockChange < 0 {
+                currentEggStock += stockChange
+                eggsSold -= stockChange
+            }
+            else if stockChange > 0 {
+                currentEggStock += stockChange
+            }
+            else{
+                programIsRunning = false
+            }
+        }
     }
 }
