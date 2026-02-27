@@ -69,10 +69,10 @@ func eggStock(eggsInStock: Int) {
 }
 
 
-func eggSales(eggsInStock: Int) {
+func eggSales(eggsSold: Int) {
     print("""
     -----Current Egg Sales-----
-    eggs: \(eggsInStock)
+    eggs sold: \(eggsSold)
 
 
 
@@ -82,7 +82,7 @@ func eggSales(eggsInStock: Int) {
 
 /// calls a function based on users input
 /// - Parameter currentMenuChoice: Users input from the main menu 
-func menuChoice(currentMenuChoice: Int, eggs: Int) -> (theInt: Int, theString: String) {
+func menuChoice(currentMenuChoice: Int, eggs: Int, Sales: Int) -> (theInt: Int, theString: String) {
 
 if currentMenuChoice == 1 {
     while true {
@@ -112,6 +112,7 @@ else if currentMenuChoice == 3 {
     return (theInt: 0, theString: "nothing")
 }
 else if currentMenuChoice == 4  {
+    eggSales(eggsSold: Sales)
     return (theInt: 0, theString: "nothing")
 }
 else if currentMenuChoice == 5 {
@@ -137,7 +138,7 @@ struct SwiftPlayground {
         while true {
             let menuInput = showMenu()
 
-            let stockChange = menuChoice(currentMenuChoice: menuInput, eggs: currentEggStock) 
+            let stockChange = menuChoice(currentMenuChoice: menuInput, eggs: currentEggStock, Sales: eggsSold) 
             if stockChange.theString == "change" {
                 if stockChange.theInt < 0 {
                     currentEggStock += stockChange.theInt
