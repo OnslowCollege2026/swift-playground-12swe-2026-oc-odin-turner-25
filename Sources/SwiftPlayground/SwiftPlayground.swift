@@ -32,11 +32,28 @@ func showMenu() -> Int {
 func addEggs(eggsInStock: Int) -> Int{
     print("Enter number of eggs being added to the stock:")
     guard let addedEggs = readLine(), let addedEggs = Int(addedEggs) , 
-addedEggs < 0 , addedEggs + eggsInStock < 1000  
+addedEggs > 0 , addedEggs + eggsInStock < 1000  
 else {
+    print("na")
+    
+    return 0 
+}
+print("\(addedEggs) eggs added")
+return addedEggs
+}
+
+
+func sellEggs(eggsInStock: Int) -> Int{
+    print("Enter number of eggs being sold:")
+    guard let soldEggs = readLine(), let soldEggs = Int(soldEggs) , 
+soldEggs > 0 , soldEggs <= eggsInStock   
+else {
+    print("na")
+    
     return 0
 }
-return addedEggs
+print("\(soldEggs) eggs added")
+return -soldEggs
 }
 
 
@@ -44,39 +61,66 @@ func eggStock(eggsInStock: Int) {
     print("""
     -----Current Egg Stock-----
     eggs: \(eggsInStock)
+
+
+
+
     """)
 }
 
 
+func eggSales(eggsInStock: Int) {
+    print("""
+    -----Current Egg Sales-----
+    eggs: \(eggsInStock)
+
+
+
+
+    """)
+}
+
 /// calls a function based on users input
 /// - Parameter currentMenuChoice: Users input from the main menu 
-func menuChoice(currentMenuChoice: Int, eggs: Int) -> Int {
+func menuChoice(currentMenuChoice: Int, eggs: Int) -> (theInt: Int, theString: String) {
+
 if currentMenuChoice == 1 {
     while true {
         let addEggsResult: Int = addEggs(eggsInStock: eggs)
         if addEggsResult == 0 {
-        
+        return (0, "nothing")
         }
         else {
-            return addEggsResult
+            return (theInt: addEggsResult, theString: "change")
+            
         }
+        
     }
 }
 else if currentMenuChoice == 2  {
-    return 0
+    let sellEggsResult: Int = sellEggs(eggsInStock: eggs)
+        if sellEggsResult == 0 {
+        return (0, "nothing")
+        }
+        else {
+            return (theInt: sellEggsResult, theString: "change")
+            
+        }
 }
 else if currentMenuChoice == 3 {
     eggStock(eggsInStock: eggs)
-    return 0
+    return (theInt: 0, theString: "nothing")
 }
 else if currentMenuChoice == 4  {
-    return 0
+    return (theInt: 0, theString: "nothing")
 }
 else if currentMenuChoice == 5 {
-    return 0
+    print("thank you for using the egger counterer")
+    
+    return (theInt: 0, theString: "the end")
 }
 else {
-    return 0
+    return (theInt: 0, theString: "nothing")
 }
 }
 
@@ -86,23 +130,31 @@ else {
 struct SwiftPlayground {
     static func main() {
         
-        var programIsRunning = true
+        
         var eggsSold = 0
         var currentEggStock = 20 
 
-        while programIsRunning == true {
+        while true {
             let menuInput = showMenu()
 
             let stockChange = menuChoice(currentMenuChoice: menuInput, eggs: currentEggStock) 
-            if stockChange < 0 {
-                currentEggStock += stockChange
-                eggsSold -= stockChange
+            if stockChange.theString == "change" {
+                if stockChange.theInt < 0 {
+                    currentEggStock += stockChange.theInt
+                    eggsSold -= stockChange.theInt
+                }
+                else if stockChange.theInt > 0 {
+                    currentEggStock += stockChange.theInt
+                }
+                else{
+                    
+                }
             }
-            else if stockChange > 0 {
-                currentEggStock += stockChange
+            else if stockChange.theString == "nothing" {
+                
             }
-            else{
-                programIsRunning = false
+            else {
+                break
             }
         }
     }
