@@ -3,7 +3,7 @@
 
 
 
-/// Prints the main manu 
+/// Asks the user to make a choice from the main manu 
 /// - Returns: user menu selction
 func showMenu() -> Int {
     print ("""
@@ -16,6 +16,7 @@ func showMenu() -> Int {
     Choose an option:
     """)
     
+    // Check that the user entered a valid choice
     guard let userInput = readLine() ,  let userInput = Int(userInput) , 
     userInput > 0 , userInput < 6
     else {
@@ -27,14 +28,16 @@ func showMenu() -> Int {
 
 
 /// asks user how many eggs are being added
+/// calculates the new stock 
 /// Limits: > 1, < 1,000
 /// - Parameter eggsInStock: The cuurent number of eggs in stock 
+/// returns new stock int 
 func addEggs(eggsInStock: Int) -> Int{
     print("Enter number of eggs being added to the stock:")
     guard let addedEggs = readLine(), let addedEggs = Int(addedEggs) , 
 addedEggs > 0 , addedEggs + eggsInStock < 1000  
 else {
-    print("na")
+    print("Not a valid number")
     
     return 0 
 }
@@ -48,11 +51,11 @@ func sellEggs(eggsInStock: Int) -> Int{
     guard let soldEggs = readLine(), let soldEggs = Int(soldEggs) , 
 soldEggs > 0 , soldEggs <= eggsInStock   
 else {
-    print("na")
+    print("Not a valid number")
     
     return 0
 }
-print("\(soldEggs) eggs added")
+print("\(soldEggs) eggs sold")
 return -soldEggs
 }
 
@@ -131,8 +134,9 @@ else {
 struct SwiftPlayground {
     static func main() {
         
-        
+        /// The number of eggs sold
         var eggsSold = 0
+        /// The number of eggs in stock
         var currentEggStock = 20 
 
         while true {
