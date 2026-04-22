@@ -1,131 +1,19 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-
-
-/// Asks the user to make a choice from the main manu 
-/// - Returns: user menu selction
-func showMenu() -> Int {
-    print ("""
-    =====Egg Shop=====
-        1. Add eggs
-        2. Sell eggs 
-        3. Show current stock 
-        4. Show sales total 
-        5. Exit 
-    Choose an option:
-    """)
-    
-    // Check that the user entered a valid choice
-    guard let userInput = readLine() ,  let userInput = Int(userInput) , 
-    userInput > 0 , userInput < 6
-    else {
-        print("Please choose one of the 5 options.")
-        return 6
-    } 
-    return userInput
-}
-
-
-/// asks user how many eggs are being added
-/// calculates the new stock 
-/// Limits: > 1, < 1,000
-/// - Parameter eggsInStock: The cuurent number of eggs in stock 
-/// returns new stock int 
-func addEggs(eggsInStock: Int) -> Int{
-    print("Enter number of eggs being added to the stock:")
-    guard let addedEggs = readLine(), let addedEggs = Int(addedEggs) , 
-addedEggs > 0 , addedEggs + eggsInStock < 1000  
-else {
-    print("Not a valid number")
-    
-    return 0 
-}
-print("\(addedEggs) eggs added")
-return addedEggs
-}
-
-
-func sellEggs(eggsInStock: Int) -> Int{
-    print("Enter number of eggs being sold:")
-    guard let soldEggs = readLine(), let soldEggs = Int(soldEggs) , 
-soldEggs > 0 , soldEggs <= eggsInStock   
-else {
-    print("Not a valid number")
-    
-    return 0
-}
-print("\(soldEggs) eggs sold")
-return -soldEggs
-}
-
-
-func eggStock(eggsInStock: Int) {
+func Menu(){
     print("""
-    -----Current Egg Stock-----
-    eggs: \(eggsInStock)
-
-
-
-
+    ------Kumura Stall------
+    1. Purchase Kumura 
+    2. Add Stock 
+    3. View current stock 
+    4. View sales records 
+    5. Info summary 
     """)
 }
 
+func PurchaseKumura(){
 
-func eggSales(eggsSold: Int) {
-    print("""
-    -----Current Egg Sales-----
-    eggs sold: \(eggsSold)
-
-
-
-
-    """)
-}
-
-/// calls a function based on users input
-/// - Parameter currentMenuChoice: Users input from the main menu 
-func menuChoice(currentMenuChoice: Int, eggs: Int, Sales: Int) -> (theInt: Int, theString: String) {
-
-if currentMenuChoice == 1 {
-    while true {
-        let addEggsResult: Int = addEggs(eggsInStock: eggs)
-        if addEggsResult == 0 {
-        return (0, "nothing")
-        }
-        else {
-            return (theInt: addEggsResult, theString: "change")
-            
-        }
-        
-    }
-}
-else if currentMenuChoice == 2  {
-    let sellEggsResult: Int = sellEggs(eggsInStock: eggs)
-        if sellEggsResult == 0 {
-        return (0, "nothing")
-        }
-        else {
-            return (theInt: sellEggsResult, theString: "change")
-            
-        }
-}
-else if currentMenuChoice == 3 {
-    eggStock(eggsInStock: eggs)
-    return (theInt: 0, theString: "nothing")
-}
-else if currentMenuChoice == 4  {
-    eggSales(eggsSold: Sales)
-    return (theInt: 0, theString: "nothing")
-}
-else if currentMenuChoice == 5 {
-    print("thank you for using the egger counterer")
-    
-    return (theInt: 0, theString: "the end")
-}
-else {
-    return (theInt: 0, theString: "nothing")
-}
 }
 
 
@@ -133,34 +21,26 @@ else {
 @main
 struct SwiftPlayground {
     static func main() {
-        
-        /// The number of eggs sold
-        var eggsSold = 0
-        /// The number of eggs in stock
-        var currentEggStock = 20 
+    
+        /// Current nuber of kumura in stock
+        var kumuraStock = 10.00
+        /// Max number of kumura that ccan be stored. (Kg)
+        let storageMax = 50.00 
+        let menuOptions = 5
 
-        while true {
-            let menuInput = showMenu()
 
-            let stockChange = menuChoice(currentMenuChoice: menuInput, eggs: currentEggStock, Sales: eggsSold) 
-            if stockChange.theString == "change" {
-                if stockChange.theInt < 0 {
-                    currentEggStock += stockChange.theInt
-                    eggsSold -= stockChange.theInt
-                }
-                else if stockChange.theInt > 0 {
-                    currentEggStock += stockChange.theInt
-                }
-                else{
-                    
-                }
-            }
-            else if stockChange.theString == "nothing" {
-                
-            }
+        var programRunning = true
+        while programRunning == true{
+
+            Menu()
+            print("Please select an option:")
+            if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{}
             else {
-                break
+                print("Invalid option please try again.")
+            
             }
+
+
         }
     }
 }
