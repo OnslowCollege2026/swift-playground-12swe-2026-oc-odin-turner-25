@@ -13,7 +13,7 @@ func Menu(){
     """)
 }
 
-func PurchaseKumura(kumuraStock: Double,) -> [Double] {
+func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int) {
 
     var funcRunning = true
     while funcRunning == true {
@@ -37,7 +37,7 @@ func PurchaseKumura(kumuraStock: Double,) -> [Double] {
             
             if let input2 = readLine(), let bagsSold = Int(input2), bagsSold >= minBags {
 
-                return [kumuraStock, bagsSold]
+                return (KumuraChange:kumuraStock, bagsChange: bagsSold)
             }
         }
         else{
