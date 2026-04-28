@@ -13,7 +13,7 @@ func Menu(){
     """)
 }
 
-func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int) {
+func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int,) {
 
     var funcRunning = true
     while funcRunning == true {
@@ -23,9 +23,10 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
         (kumura costs $30/kg)
         """)
 
-        if let input = readLine(), let sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
+        if let input = readLine(), var sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
 
             // Need to convert to int 
+            // sale.round()
             let minBags = sale/5
 
             print("""
@@ -37,7 +38,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             
             if let input2 = readLine(), let bagsSold = Int(input2), bagsSold >= minBags {
 
-                return (KumuraChange: sale, bagsChange: bagsSold)
+                return (kumuraChange: sale, bagsChange: bagsSold)
             }
         }
         else{
