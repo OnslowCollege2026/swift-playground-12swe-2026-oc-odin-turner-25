@@ -73,6 +73,7 @@ struct SwiftPlayground {
         
         PurchaseKumura(kumuraStock: kumuraStock)
 
+        kumuraStock -= 
         }
     }
 }
