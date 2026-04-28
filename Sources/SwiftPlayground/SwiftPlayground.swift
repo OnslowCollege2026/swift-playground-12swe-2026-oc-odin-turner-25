@@ -13,27 +13,32 @@ func Menu(){
     """)
 }
 
-func PurchaseKumura(kumuraStock: Double,) -> Double {
+func PurchaseKumura(kumuraStock: Double,) -> [Double] {
 
     var funcRunning = true
     while funcRunning == true {
         print("""
         There are currently \(kumuraStock)Kgs of kumura in stock
         how many Kumura(kg) would you like to purchase?
-        (each bag holds 5Kg)
         (kumura costs $30/kg)
         """)
 
-        if let input = readLine(), let sale = Double(input), sale <= kumuraStock, sale >= 0.1, sale <= 5 {
+        if let input = readLine(), let sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
 
-            let bagsUsed = sale/5
+            // Need to convert to int 
+            let minBags = sale/5
 
             print("""
-            You have \(sale)Kgs of kumura split between 
-            
+            You have \(sale)Kgs of kumura 
+            How many bags would you like to purchase? 
+            (You need at least \(minBags) bags)
+            (bags cost 20cents/each)
             """)
             
-            return kumuraStock
+            if let input2 = readLine(), let bagsSold = Int(input2), bagsSold >= minBags {
+
+                return [kumuraStock, bagsSold]
+            }
         }
         else{
 
@@ -64,7 +69,8 @@ struct SwiftPlayground {
             else {
                 print("Invalid option please try again.")
             }
-
+        
+        PurchaseKumura(kumuraStock: kumuraStock)
 
         }
     }
