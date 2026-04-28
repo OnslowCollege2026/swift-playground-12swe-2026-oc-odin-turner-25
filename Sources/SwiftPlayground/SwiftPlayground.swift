@@ -37,7 +37,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             
             if let input2 = readLine(), let bagsSold = Int(input2), bagsSold >= minBags {
 
-                return (KumuraChange:kumuraStock, bagsChange: bagsSold)
+                return (KumuraChange: sale, bagsChange: bagsSold)
             }
         }
         else{
