@@ -71,9 +71,10 @@ struct SwiftPlayground {
                 print("Invalid option please try again.")
             }
         
-        PurchaseKumura(kumuraStock: kumuraStock)
+        
+        let purchasefunc = PurchaseKumura(kumuraStock: kumuraStock)
 
-        kumuraStock -= 
+        kumuraStock -= purchasefunc.kumuraChange
         }
     }
 }
