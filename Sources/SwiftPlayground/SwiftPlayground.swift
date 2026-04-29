@@ -27,7 +27,8 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
         if let input = readLine(), let sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
 
             // Caluclatges the samllest number of bags needed 
-            let minBags = Int(sale/5)
+            let minBags = Int((sale + 4.9) / 5)
+            
             
             while true{
             print("""
