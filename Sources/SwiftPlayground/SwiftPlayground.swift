@@ -36,9 +36,11 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             (bags cost 20cents/each)
             """)
             
-            if let input2 = readLine(), let bagsSold = Int(input2), bagsSold >= minBags {
-
-                return (kumuraChange: sale, bagsChange: bagsSold)
+            if let input2 = readLine(), let bagsSale = Int(input2), bagsSale >= minBags {
+                
+                print("You have purchased \(bagsSale)")
+                
+                return (kumuraChange: sale, bagsChange: bagsSale)
             }
         }
         else{
