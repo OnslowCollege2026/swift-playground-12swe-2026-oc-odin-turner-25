@@ -19,7 +19,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
     var funcRunning = true
     while funcRunning == true {
         print("""
-        There are currently \(kumuraStock)Kgs of kumura in stock
+        There is currently \(kumuraStock)Kgs of kumura in stock.
         how many Kumura(kg) would you like to purchase?
         (kumura costs $30/kg)
         """)
@@ -31,7 +31,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             let minBags = sale/5
 
             print("""
-            You have \(sale)Kgs of kumura 
+            You have \(sale)Kgs of kumura. 
             How many bags would you like to purchase? 
             (You need at least \(minBags) bags)
             (bags cost 20cents/each)
@@ -39,7 +39,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             
             if let input2 = readLine(), let bagsSale = Int(input2), bagsSale >= minBags {
                 
-                print("You have purchased \(bagsSale)")
+                print("You have purchased \(bagsSale) Bags")
                 
                 return (kumuraChange: sale, bagsChange: bagsSale)
             }
@@ -50,8 +50,12 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
     }
 }
 
-func addStock(KumuraStock: Double, storageMax: Double ){
-
+func addStock(kumuraStock: Double, storageMax: Double){
+    print("""
+    There is currently \(kumuraStock)Kgs of kumura in stock.
+    E
+    """)
+    
 }
 
 @main
