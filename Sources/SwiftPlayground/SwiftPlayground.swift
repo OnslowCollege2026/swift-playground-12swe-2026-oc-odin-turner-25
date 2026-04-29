@@ -31,7 +31,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             
             while true{
             print("""
-            You have \(sale)Kgs of kumura. 
+            You are buying \(sale)Kgs of kumura. 
             How many bags would you like to purchase? 
             (You need at least \(minBags) bags)
             (bags cost 20cents/each)
