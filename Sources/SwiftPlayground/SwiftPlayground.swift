@@ -28,7 +28,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
 
             // Need to convert to int 
             // sale.round()
-            let minBags = sale/5
+            let minBags:Int = sale/5
 
             print("""
             You have \(sale)Kgs of kumura. 
