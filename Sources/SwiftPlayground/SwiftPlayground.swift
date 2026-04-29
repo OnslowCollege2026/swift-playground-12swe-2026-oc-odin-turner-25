@@ -45,10 +45,11 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             }
         }
         else{
-
+            
+        }
         }
     }
-}
+
 
 func addStock(kumuraStock: Double, storageMax: Double){
     print("""
