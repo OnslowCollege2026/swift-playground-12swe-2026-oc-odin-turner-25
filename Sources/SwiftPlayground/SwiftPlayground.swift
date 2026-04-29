@@ -26,10 +26,9 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
 
         if let input = readLine(), var sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
 
-            // Need to convert to int 
-            // sale.round()
-            let minBags:Int = sale/5
-
+            // Caluclatges the samllest number of bags needed 
+            let minBags = Int(sale/5)
+            
             print("""
             You have \(sale)Kgs of kumura. 
             How many bags would you like to purchase? 
@@ -37,6 +36,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             (bags cost 20cents/each)
             """)
             
+            // checking user input is valid and user bought enough bags 
             if let input2 = readLine(), let bagsSale = Int(input2), bagsSale >= minBags {
                 
                 print("You have purchased \(bagsSale) Bags")
