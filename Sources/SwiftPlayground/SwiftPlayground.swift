@@ -96,15 +96,19 @@ struct SwiftPlayground {
             print("Please select an option:")
             if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{
 
+                if userChoice == 1 {
+                    let purchaseFunc = PurchaseKumura(kumuraStock: kumuraStock)
+                }
                 
-                
+                else if userChoice == 2{
+                    let addStockFunc = addStock(kumuraStock: kumuraStock, storageMax: storageMax)
+                }
             }
             else {
                 print("Invalid option please try again.")
             }
         
         
-        let purchasefunc = PurchaseKumura(kumuraStock: kumuraStock)
 
         kumuraStock -= purchasefunc.kumuraChange
         }
