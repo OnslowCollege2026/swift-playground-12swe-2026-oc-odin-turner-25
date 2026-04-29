@@ -17,8 +17,7 @@ func Menu(){
 
 func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int,) {
 
-    let funcRunning = true
-    while funcRunning == true {
+    while true {
         print("""
         There is currently \(kumuraStock)Kgs of kumura in stock.
         how many Kumura(kg) would you like to purchase?
@@ -30,6 +29,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             // Caluclatges the samllest number of bags needed 
             let minBags = Int(sale/5)
             
+            while true{
             print("""
             You have \(sale)Kgs of kumura. 
             How many bags would you like to purchase? 
@@ -44,8 +44,13 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
                 
                 return (kumuraChange: sale, bagsChange: bagsSale)
             }
+            else{
+                print("Invalid purchase amount please try again.")
+            }
+            }
         }
         else{
+            print("Invaild purchase amount please try again.")
             
         }
         }
