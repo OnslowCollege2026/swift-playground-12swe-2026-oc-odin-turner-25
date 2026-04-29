@@ -88,8 +88,6 @@ struct SwiftPlayground {
         /// Number of menu options avalable.
         let menuOptions = 6
 
-        let 
-        var purchaseFunc: Double
 
 
         var programRunning = true
@@ -100,7 +98,7 @@ struct SwiftPlayground {
             if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{
 
                 if userChoice == 1 {
-                    purchaseFunc.kumuraChange = PurchaseKumura(kumuraStock: kumuraStock)
+                    let purchaseFunc = PurchaseKumura(kumuraStock: kumuraStock)
                 }
                 
                 else if userChoice == 2{
