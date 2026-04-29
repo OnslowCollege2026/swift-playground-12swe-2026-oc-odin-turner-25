@@ -34,14 +34,14 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
             print("""
             You are buying \(sale)Kgs of kumura. 
             How many bags would you like to purchase? 
-            (You need at least \(minBags) bags)
+            (You need at least \(minBags) bag/s)
             (bags cost 20cents/each)
             """)
             
             // checking user input is valid and user bought enough bags 
             if let input2 = readLine(), let bagsSale = Int(input2), bagsSale >= minBags {
                 
-                print("You have purchased \(bagsSale) Bags")
+                print("You have purchased \(bagsSale) Bag/s")
                 
                 return (kumuraChange: sale, bagsChange: bagsSale)
             }
@@ -58,12 +58,23 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
     }
 
 
-func addStock(kumuraStock: Double, storageMax: Double){
+func addStock(kumuraStock: Double, storageMax: Double) -> Double{
+    while true {
     print("""
     There is currently \(kumuraStock)Kgs of kumura in stock.
-    E
+    Enter the amount of kumura you would like to add.
+    (The storage limit is \(storageMax)Kgs)
     """)
     
+    if let input = readLine(), let addedKumura = Double(input), addedKumura >= 0.1, addedKumura + kumuraStock <= storageMax {
+        print("""
+        You have added \(addedKumura)kgs 
+        the new stock is \(addedKumura + kumuraStock)Kgs
+        """)
+        
+        return addedKumura
+    }
+    }
 }
 
 @main
