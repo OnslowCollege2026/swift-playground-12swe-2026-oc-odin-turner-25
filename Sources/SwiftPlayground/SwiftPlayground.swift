@@ -94,7 +94,11 @@ struct SwiftPlayground {
 
             Menu()
             print("Please select an option:")
-            if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{}
+            if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{
+
+                switch
+                
+            }
             else {
                 print("Invalid option please try again.")
             }
