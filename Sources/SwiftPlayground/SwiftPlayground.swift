@@ -14,9 +14,10 @@ func Menu(){
     """)
 }
 
+
 func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int,) {
 
-    var funcRunning = true
+    let funcRunning = true
     while funcRunning == true {
         print("""
         There is currently \(kumuraStock)Kgs of kumura in stock.
@@ -24,7 +25,7 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
         (kumura costs $30/kg)
         """)
 
-        if let input = readLine(), var sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
+        if let input = readLine(), let sale = Double(input), sale <= kumuraStock, sale >= 0.1 {
 
             // Caluclatges the samllest number of bags needed 
             let minBags = Int(sale/5)
