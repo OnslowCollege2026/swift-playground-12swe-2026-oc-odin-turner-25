@@ -10,6 +10,7 @@ func Menu(){
     3. View current stock 
     4. View sales records 
     5. Info summary 
+    6. Exit
     """)
 }
 
@@ -49,7 +50,9 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
     }
 }
 
+func addStock(KumuraStock: Double, storageMax: Double ){
 
+}
 
 @main
 struct SwiftPlayground {
@@ -60,7 +63,7 @@ struct SwiftPlayground {
         /// Max number of kumura that ccan be stored. (Kg)
         let storageMax = 50.00 
         /// Number of menu options avalable.
-        let menuOptions = 5
+        let menuOptions = 6
 
 
         var programRunning = true
