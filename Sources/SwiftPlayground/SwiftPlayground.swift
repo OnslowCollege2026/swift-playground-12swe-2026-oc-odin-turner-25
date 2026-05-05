@@ -15,10 +15,13 @@ func Menu(){
 }
 
 
-/// asks how many kumura the user is purchasing and also how bags they want.
+/// Asks how many kumura the user is purchasing and also how bags they want to purchase.
 /// 
-/// Returns the amount of kumura purchaseed as a Double.
-/// Also returns the amount of bags purchased as an Int.
+/// - Parameters:
+///   - kumuraStock: Number of kumura in stock 
+/// - Returns: 
+///    - kumuraChange: Number of kumura sold
+///    - bagsChange: Number of bags sold
 func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: Int,) {
 
     while true {
@@ -62,9 +65,12 @@ func PurchaseKumura(kumuraStock: Double,) -> (kumuraChange: Double, bagsChange: 
     }
 
 
-/// Tells user current amount of kumura in storage amd the maximum storage space
+/// Allows user to add kumura to the stock. 
 /// 
-/// returns the Number of kumura added 
+/// - Parameters:
+///   - kumuraStock: Number of kumura in stock 
+///   - storageMax: The highest number the kumuraStock can be
+/// - Returns: Number of kumura added 
 func addStock(kumuraStock: Double, storageMax: Double) -> Double{
     while true {
     print("""
@@ -81,11 +87,16 @@ func addStock(kumuraStock: Double, storageMax: Double) -> Double{
         
         return addedKumura
     }
+    else {
+        print("Invalid amount, please try again")
+    }
     }
 }
 
 
-/// Prints the current number of kumura in stock 
+/// Prints the current number of kumura in stock.
+/// 
+/// - Parameter kumuraStock: Number of kumura in stock 
 func viewCurrentStock(kumuraStock: Double) {
     print("""
     ==== Current Stock ====
@@ -96,6 +107,11 @@ func viewCurrentStock(kumuraStock: Double) {
     
 }
 
+/// Calculates the total number of kumura and bags sold.
+/// 
+/// - Parameters:
+///   - KumuraSales: Number of kumura sold 
+///   - bagSales: Number of bags sold 
 func salesRecord(KumuraSales: [Double], bagSales: [Int]) {
     var totalKumuraSales = 0.00
     KumuraSales.forEach({ kumura in  
@@ -114,18 +130,38 @@ func salesRecord(KumuraSales: [Double], bagSales: [Int]) {
     """)
     
 }
+/// Calculates the adverage price and weight of sales made per bag.
+/// 
+/// - Parameters:
+///   - KumuraSales: Number of kumura sold 
+///   - bagSales: Number of bags sold 
+///   - price: Set price of kumura 
+func infoSummary(KumuraSales: [Double], bagSales: [Int], price: Double) {
 
-func infoSummary(KumuraSales: [Double], bagSales: [Int]) {
+var kumura = 0.00
+var bags = 0
+var adverageW = 0.00
+var profit = 0.00
+var adverageP = 0.00
 
-var adverageWeight = 0.00
-var totalBagSales = 0
-    KumuraSales.forEach({ kumura in  
-    adverageWeight = kumura * bagSales.forEach({ bags in  
-    totalBagSales += bags 
-    }) 
-    })
+KumuraSales.forEach({ Double in 
+kumura += Double 
+profit += Double * price})
+
+bagSales.forEach({ Int in 
+bags += Int })
+
+adverageW = kumura / Double(bags)
+
+adverageP = profit / Double(bags)
+print("""
+==== Info Summary ====
+Adverage weight per bag = \(adverageW)kg
+Adverage profit per bag = $\(adverageP)
+""")
 
 }
+
 @main
 struct SwiftPlayground {
     static func main() {
@@ -136,9 +172,11 @@ struct SwiftPlayground {
         let storageMax = 50.00 
         /// Number of menu options avalable.
         let menuOptions = 6
-
+        /// Set price of Kumura 
+        let kumuraPrice = 3.00
+        /// Array of the number of bags sold 
         var bagsSale: [Int] = []
-
+        /// Array of the number of kumura sold
         var kumuraSale: [Double] = []
 
         
@@ -147,10 +185,14 @@ struct SwiftPlayground {
         var programRunning = true
         while programRunning == true{
 
+
+            
             Menu()
             print("Please select an option:")
             if let input = readLine(), let userChoice = Int(input), userChoice <= menuOptions, userChoice >= 1{
+                
 
+                // Runs a function depending on user choice from menu func
                 if userChoice == 1 {
                     let purchaseFunc = PurchaseKumura(kumuraStock: stock)
                     bagsSale.append(purchaseFunc.bagsChange) 
@@ -170,6 +212,16 @@ struct SwiftPlayground {
 
                 else if userChoice == 4 {
                     salesRecord(KumuraSales: kumuraSale, bagSales: bagsSale)
+                }
+                else if userChoice == 5 {
+                    infoSummary(KumuraSales: kumuraSale, bagSales: bagsSale, price: kumuraPrice) 
+                }
+                else {
+                    print("""
+                    Thank you for using the kumura stall 
+                    ------------------------
+                    """)
+                    programRunning = false
                 }
 
             }
